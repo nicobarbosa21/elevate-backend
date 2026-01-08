@@ -1,4 +1,4 @@
-from jokes_api import jokes
+from jokes_api import api_methods as jokes
 
 def test_jokes_api():
     joke = jokes.get_random_joke()

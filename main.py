@@ -1,7 +1,19 @@
 from fastapi import FastAPI
-from jokes_api import jokes
+from fastapi.middleware.cors import CORSMiddleware
+from jokes_api import api_methods as jokes
+from harry_potter_api import api_methods as harry_potter
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+### Italian Jokes API Endpoints ###
 
 @app.get("/random_joke")
 def get_joke():
@@ -26,3 +38,29 @@ def get_long():
 @app.get("/stereotype_joke")
 def get_stereotype():
     return jokes.get_stereotype_joke()
+
+### Harry Potter API Endpoints ###
+
+@app.get("/harry_potter/books")
+def get_books():
+    return harry_potter.get_all_books()
+
+@app.get("/harry_potter/books/{title}")
+def search_books(title: str):
+    return harry_potter.search_books_by_title(title)
+
+@app.get("/harry_potter/characters")
+def get_characters():
+    return harry_potter.get_all_characters()
+
+@app.get("/harry_potter/characters/{name}")
+def search_characters(name: str):
+    return harry_potter.search_characters_by_name(name)
+
+@app.get("/harry_potter/spells")
+def get_spells():
+    return harry_potter.get_all_spells()
+
+@app.get("/harry_potter/spells/{name}")
+def search_spells(name: str):
+    return harry_potter.search_spells_by_name(name)
