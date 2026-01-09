@@ -2,6 +2,8 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from jokes_api import api_methods as jokes
 from harry_potter_api import api_methods as harry_potter
+from main_api.db import Base, engine
+from main_api.entities import employee, seniority, nationality, jobs
 
 app = FastAPI()
 
