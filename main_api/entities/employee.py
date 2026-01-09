@@ -9,12 +9,12 @@ class Employee(Base):
     name = Column(String, nullable=False)
     last_name = Column(String, nullable=False)
     age = Column(Integer)
-    dni = Column(Integer, unique=True, nullable=False)
+    dni = Column(String, unique=True, nullable=False)
     job_id = Column(Integer, ForeignKey('jobs.id'), nullable=False)
     country_id = Column(Integer, ForeignKey('nationalities.id'), nullable=False)
     seniority_id = Column(Integer, ForeignKey('seniorities.id'), nullable=False)
 
-    job = relationship("Jobs", backref="employees")
+    job = relationship("Job", backref="employees")
     nationality = relationship("Nationality", backref="employees")
     seniority = relationship("Seniority", backref="employees")
 

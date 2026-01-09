@@ -4,6 +4,7 @@ from jokes_api import api_methods as jokes
 from harry_potter_api import api_methods as harry_potter
 from main_api.db import Base, engine
 from main_api.entities import employee, seniority, nationality, jobs
+from main_api.routers import employee_routers, seniority_routers, nationality_routers, job_routers
 
 app = FastAPI()
 
@@ -14,6 +15,11 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+app.include_router(employee_routers.router)
+app.include_router(seniority_routers.router)
+app.include_router(nationality_routers.router)
+app.include_router(job_routers.router)
 
 ### Italian Jokes API Endpoints ###
 

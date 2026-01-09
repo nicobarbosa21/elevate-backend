@@ -7,7 +7,7 @@ from alembic import context
 
 from main_api.db import Base
 from main_api.entities.employee import Employee
-from main_api.entities.jobs import Jobs
+from main_api.entities.jobs import Job
 from main_api.entities.nationality import Nationality
 from main_api.entities.seniority import Seniority
 
