@@ -4,7 +4,7 @@ from main_api.routers import employee_routers, seniority_routers, nationality_ro
 from jokes_api import jokes_routers
 from harry_potter_api import hp_routers
 
-app = FastAPI()
+app = FastAPI(title="Elevate Backend API")
 
 app.add_middleware(
     CORSMiddleware,

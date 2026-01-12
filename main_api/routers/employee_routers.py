@@ -4,6 +4,8 @@ from main_api.db import get_db
 from main_api.services.employee_services import (
     get_all_employees,
     get_employee_by_id,
+    get_employees_by_name,
+    get_employees_by_last_name,
     create_employee,
     update_employee,
     delete_employee
@@ -18,9 +20,17 @@ router = APIRouter(
 def get_employees(db: Session = Depends(get_db)):
     return get_all_employees(db)
 
-@router.get("/{employee_id}")
-def get_employee(employee_id: int, db: Session = Depends(get_db)):
+@router.get("/id/{employee_id}")
+def get_employee_id(employee_id: int, db: Session = Depends(get_db)):
     return get_employee_by_id(db, employee_id)
+
+@router.get("/name/{name}")
+def get_employees_name(name: str, db: Session = Depends(get_db)):
+    return get_employees_by_name(db, name)
+
+@router.get("/last_name/{last_name}")
+def get_employees_last_name(last_name: str, db: Session = Depends(get_db)):
+    return get_employees_by_last_name(db, last_name)
 
 @router.post("/")
 def add_employee(

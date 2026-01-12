@@ -1,11 +1,33 @@
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, joinedload
 from main_api.entities.employee import Employee
 
 def get_all_employees(db: Session):
-    return db.query(Employee).all()
+    return db.query(Employee).options(
+        joinedload(Employee.job),
+        joinedload(Employee.nationality),
+        joinedload(Employee.seniority)
+    ).all()
 
 def get_employee_by_id(db: Session, employee_id: int):
-    return db.query(Employee).filter(Employee.id == employee_id).first()
+    return db.query(Employee).options(
+        joinedload(Employee.job),
+        joinedload(Employee.nationality),
+        joinedload(Employee.seniority)
+    ).filter(Employee.id == employee_id).first()
+
+def get_employees_by_name(db: Session, name: str):
+    return db.query(Employee).options(
+        joinedload(Employee.job),
+        joinedload(Employee.nationality),
+        joinedload(Employee.seniority)
+    ).filter(Employee.name.ilike(f"%{name}%")).all()
+
+def get_employees_by_last_name(db: Session, last_name: str):
+    return db.query(Employee).options(
+        joinedload(Employee.job),
+        joinedload(Employee.nationality),
+        joinedload(Employee.seniority)
+    ).filter(Employee.last_name.ilike(f"%{last_name}%")).all()
 
 def create_employee(db: Session, name: str, last_name: str, age: int, dni: str, job_id: int, country_id: int, seniority_id: int):
     new_employee = Employee(
