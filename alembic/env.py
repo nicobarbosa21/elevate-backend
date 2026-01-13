@@ -10,6 +10,7 @@ from main_api.entities.employee import Employee
 from main_api.entities.jobs import Job
 from main_api.entities.nationality import Nationality
 from main_api.entities.seniority import Seniority
+from auth.models import User
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
