@@ -1,21 +1,4 @@
-import pytest
-from sqlalchemy.orm import sessionmaker
-from main_api.db import engine
-from main_api.entities.nationality import Nationality
 from main_api.services import nationality_services
-
-
-@pytest.fixture
-def test_db():
-    """Use existing SQLite database for testing with cleanup"""
-    TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-    db = TestingSessionLocal()
-    yield db
-    
-    # Cleanup: delete all nationalities after test
-    db.query(Nationality).delete()
-    db.commit()
-    db.close()
 
 
 def test_get_all_nationalities_empty(test_db):
