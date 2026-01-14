@@ -2,7 +2,26 @@
 
 ## Overview
 Elevate Backend is a FastAPI-based application for managing and serving backend services.
-The goal of this Backend is be used in the Elevate Frontend
+The goal of this Backend is be used in the Elevate Frontend.
+This app contains interaction with three APIs:
+
+**Employee Management API** (Created with FastAPI)
+- Full CRUD operations for employees with relationships
+- Manage job positions, nationalities, and seniority levels
+- Search employees by name or last name
+- Filter by job, country, or seniority level
+- Includes authentication via JWT tokens
+
+**Jokes API** (External Integration)
+- Fetches random jokes from the Italian Jokes API
+- Supports multiple joke subtypes: One-liner, Observational, Wordplay, Long, and Stereotype
+- Provides a single random joke endpoint for variety
+
+**Harry Potter API** (External Integration)
+- Query three main data sources:
+  - **Books**: Search and retrieve all Harry Potter books with metadata
+  - **Characters**: Find characters by name with detailed information
+  - **Spells**: Browse and search magical spells from the Harry Potter universe
 
 ## Setup
 
